@@ -1,6 +1,6 @@
 {
   "sourcePages": 31,
-  "count": 273,
+  "count": 275,
   "cards": [
     {
       "id": 1,
@@ -1639,6 +1639,50 @@
       "pdfPage": 31,
       "pos": 3,
       "image": "cards/273.webp"
+    },
+    {
+      "id": 274,
+      "pdfPage": null,
+      "pos": null,
+      "set": "EB-05",
+      "title": "娜美＆妮可・羅賓｜座椅插畫",
+      "titleJa": "ナミ＆ニコ・ロビン（椅子／座り）",
+      "image": "cards/274.webp",
+      "origin": "Extra Booster EB-05 · Heroines Edition vol.2",
+      "versions": [
+        "Normal／黑框",
+        "Gold／金框"
+      ],
+      "artworkGroup": "eb05-seated-nami-robin",
+      "notes": "相同插畫兩種印刷版本，收藏一幅插畫只算 1 張",
+      "source": "https://www.cardrush-op.jp/product-group/142/0/photo?img=160&num=100"
+    },
+    {
+      "id": 275,
+      "pdfPage": null,
+      "pos": null,
+      "set": "EB-05",
+      "title": "莉莉絲＆波妮＆羅賓＆娜美｜四人插畫",
+      "titleJa": "リリス＆ボニー＆ロビン＆ナミ",
+      "image": "cards/275.webp",
+      "origin": "Extra Booster EB-05 · Heroines Edition vol.2",
+      "versions": [
+        "Normal／黑框",
+        "Gold／金框"
+      ],
+      "artworkGroup": "eb05-four-heroines",
+      "notes": "相同插畫兩種印刷版本，收藏一幅插畫只算 1 張",
+      "source": "https://www.cardrush-op.jp/product-group/142/0/photo?img=160&num=100"
+    }
+  ],
+  "additionalSources": [
+    {
+      "set": "EB-05",
+      "name": "ONE PIECE Heroines Edition vol.2",
+      "artworks": 2,
+      "variantsPerArtwork": 2,
+      "verifiedDate": "2026-11-12",
+      "source": "https://www.cardrush-op.jp/product-group/142/0/photo?img=160&num=100"
     }
   ]
 }
