@@ -1,6 +1,6 @@
 {
   "sourcePages": 31,
-  "count": 271,
+  "count": 273,
   "cards": [
     {
       "id": 1,
@@ -1479,6 +1479,12 @@
       "image": "cards/246.webp"
     },
     {
+      "id": 247,
+      "pdfPage": 28,
+      "pos": 4,
+      "image": "cards/247.webp"
+    },
+    {
       "id": 248,
       "pdfPage": 28,
       "pos": 5,
@@ -1489,6 +1495,12 @@
       "pdfPage": 28,
       "pos": 6,
       "image": "cards/249.webp"
+    },
+    {
+      "id": 250,
+      "pdfPage": 28,
+      "pos": 7,
+      "image": "cards/250.webp"
     },
     {
       "id": 251,
