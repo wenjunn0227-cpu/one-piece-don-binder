@@ -1,0 +1,32 @@
+name: Build DON card images from official PDF
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-card-catalog.yml'
+      - 'scripts/extract_cards.py'
+      - 'Card List.pdf'
+permissions:
+  contents: write
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install extraction libraries
+        run: pip install pymupdf pillow
+      - name: Extract original embedded card artwork and catalog
+        run: python scripts/extract_cards.py
+      - name: Commit card images and manifest
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add cards catalog.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate card images and accurate catalog from PDF"
+            git push
+          fi
