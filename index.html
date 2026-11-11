@@ -6,13 +6,13 @@
 @media(max-width:530px){.binder{gap:5px;padding:7px}.slot{padding:3px;border-radius:5px}.tag{top:5px;right:5px;font-size:8px;padding:3px}.number,.source{font-size:9px}.toolbar button{font-size:12px;padding:9px}header{padding:25px 15px}}
 .release{max-width:1100px;margin:0 auto 18px;padding:18px;border:1px solid #5e4c2b;background:#1a1a1a;border-radius:12px}.release h2{font-size:17px;margin:0 0 9px}.release p{color:#bbb;line-height:1.75;margin:6px 0}.release a{word-break:break-word}.chip{display:inline-block;padding:5px 9px;border-radius:20px;background:#343029;color:#f5d18a;font-size:11px;margin:3px 4px 3px 0}.subtle{color:#aaa;font-size:12px}
 </style></head><body>
-<header><div class="eyebrow">ONE PIECE CARD GAME · PRIVATE COLLECTION TRACKER</div><div class="brand">DON!! ARCHIVE<span style="color:var(--accent)">.</span></div><div class="desc">日文 DON!! 卡牌收藏圖鑑 · 3×3 Binder · 按官方 PDF 原始順序排列，不留空格。點選卡片標記收藏，資料會保存在此瀏覽器。</div><div class="stats"><div><b id="owned">0</b><small>COLLECTED</small></div><div><b>273</b><small>PDF ENTRIES</small></div><div><b id="percent">0%</b><small>PROGRESS</small></div><div><b id="pageTotal">31</b><small>BINDER PAGES</small></div></div></header>
+<header><div class="eyebrow">ONE PIECE CARD GAME · PRIVATE COLLECTION TRACKER</div><div class="brand">DON!! ARCHIVE<span style="color:var(--accent)">.</span></div><div class="desc">日文 DON!! 卡牌收藏圖鑑 · 3×3 Binder · 按官方 PDF 原始順序排列，不留空格。點選卡片標記收藏，資料會保存在此瀏覽器。</div><div class="stats"><div><b id="owned">0</b><small>COLLECTED</small></div><div><b id="totalEntries">—</b><small>VERIFIED PDF ENTRIES</small></div><div><b id="percent">0%</b><small>PROGRESS</small></div><div><b id="pageTotal">31</b><small>BINDER PAGES</small></div></div></header>
 <main>
 <section class="release">
 <div class="eyebrow">CATALOG STATUS · 2026-11-12</div>
 <h2>最新 DON!! 發行追蹤</h2>
-<p><b>原始收藏圖鑑：273 筆</b>（目前對應官方 PDF 31 頁，最後收錄 OP-17）。為保留你的收藏記錄，原本 #001–#273 的 ID 不會因 PDF 更新而重新編號。</p>
-<p><span class="chip">NEW · EB-05</span> ONE PIECE Heroines Edition vol.2 已於 2026-10-31 發售；產品資料顯示有 <b>2 種 DON!! 插畫</b>。因目前 PDF 尚未提供可核對的 EB-05 卡圖，暫列為「待加入」，不冒充已收錄，也不計入 273 筆進度。<a href="https://one-piece.com/news/83207/index.html" target="_blank" rel="noopener">官方發售資訊</a> · <a href="https://portaltcg.co.uk/blogs/news/one-piece-heroines-edition-vol-2-release-date-card-list" target="_blank" rel="noopener">DON!! 數量來源</a></p>
+<p><b>原始收藏編號採固定格位 ID</b>（網站會逐頁檢查當前 PDF，排除空白卡位）。為保留你的收藏記錄，現有卡牌的 ID 不會因 PDF 更新而重新編號。</p>
+<p><span class="chip">NEW · EB-05</span> ONE PIECE Heroines Edition vol.2 已於 2026-10-31 發售；產品資料顯示有 <b>2 種 DON!! 插畫</b>。因目前 PDF 尚未提供可核對的 EB-05 卡圖，暫列為「待加入」，不冒充已收錄，也在取得正式卡圖前不計入收藏進度。<a href="https://one-piece.com/news/83207/index.html" target="_blank" rel="noopener">官方發售資訊</a> · <a href="https://portaltcg.co.uk/blogs/news/one-piece-heroines-edition-vol-2-release-date-card-list" target="_blank" rel="noopener">DON!! 數量來源</a></p>
 <p><span class="chip">UPCOMING · OP-18</span> OP-18 預定 2026-11-21 發售，未發售的 DON!! 不預先編造資料。<a href="https://www.onepiece-cardgame.com/pdf/don-cardlist.pdf" target="_blank" rel="noopener">查看官方 DON!! Card List</a></p>
 <p class="subtle">版本標示：Normal（一般發行版）≠ Non-Foil。一般版也可能有局部閃面；Parallel / Gold 需要依各系列官方版本判定，不能只憑是否反光分類。</p>
 </section>
@@ -26,13 +26,13 @@
 <script type="module">
 import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs';
 pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs';
-const total=273;
+let total=273;
 const groups=[['普通／活動',1,15],['OP-01～08',16,27],['PRB-01',28,122],['PRB-02 / OP-09～12',123,225],['OP-13～17',226,273]];
-const entries=Array.from({length:total},(_,i)=>{const p=Math.floor(i/9)+1;let set=p>=16&&p<=25?'PRB-02':p>=4&&p<=14?'PRB-01':p===3?'OP-03 / OP-08':p===15?'OP-10 / OP-12':p===26?'PRB-02 / OP-13':p===27?'EB-03':p===28?'OP-14 / EB-04':p===29?'OP-15 / 特別卡':p===30?'OP-15 / OP-16 / OP-17':p===31?'OP-17':'活動 / DON!!';return {id:i+1,pdfPage:p,pos:i%9+1,set}});
+let entries=Array.from({length:total},(_,i)=>{const p=Math.floor(i/9)+1;let set=p>=16&&p<=25?'PRB-02':p>=4&&p<=14?'PRB-01':p===3?'OP-03 / OP-08':p===15?'OP-10 / OP-12':p===26?'PRB-02 / OP-13':p===27?'EB-03':p===28?'OP-14 / EB-04':p===29?'OP-15 / 特別卡':p===30?'OP-15 / OP-16 / OP-17':p===31?'OP-17':'活動 / DON!!';return {id:i+1,pdfPage:p,pos:i%9+1,set}});
 let owned=new Set();try{owned=new Set(JSON.parse(localStorage.getItem('don-owned-v1')||'[]'))}catch(e){}
 let pdf=null,page=0,chosen=null;const $=id=>document.getElementById(id),cache=new Map();
 function persist(){localStorage.setItem('don-owned-v1',JSON.stringify([...owned]));stats()}
-function stats(){$('owned').textContent=owned.size;$('percent').textContent=(owned.size/total*100).toFixed(1)+'%'}stats();
+function stats(){$('owned').textContent=owned.size;$('percent').textContent=(total?owned.size/total*100:0).toFixed(1)+'%'}stats();
 function filtered(){let q=$('search').value.trim().toLowerCase(),f=$('filter').value;return entries.filter(e=>(!q||e.set.toLowerCase().includes(q)||(''+e.pdfPage)===q||(''+e.id)===q)&&(f==='all'||(f==='owned'?owned.has(e.id):!owned.has(e.id))))}
 async function cardImage(e,canvas){if(!pdf)return;const pg=e.pdfPage;if(!cache.has(pg)){cache.set(pg,pdf.getPage(pg).then(async p=>{let v=p.getViewport({scale:1.5}),c=document.createElement('canvas');c.width=v.width;c.height=v.height;await p.render({canvasContext:c.getContext('2d'),viewport:v}).promise;return c}))}try{let c=await cache.get(pg);if(!canvas.isConnected)return;let col=(e.pos-1)%3,row=Math.floor((e.pos-1)/3),scale=1.5;canvas.width=280;canvas.height=391;canvas.getContext('2d').drawImage(c,(59.33+170.63*col)*scale,(152.25+226.73*row)*scale,135.35*scale,188.99*scale,0,0,280,391)}catch(err){console.warn(err)}}
 function render(){let list=filtered(),max=Math.max(1,Math.ceil(list.length/9));page=Math.max(0,Math.min(page,max-1));$('pageTotal').textContent=max;for(const id of ['pageText','pageText2'])$(id).textContent='PAGE '+String(page+1).padStart(2,'0')+' / '+String(max).padStart(2,'0');for(let id of ['prev','prev2'])$(id).disabled=page===0;for(let id of ['next','next2'])$(id).disabled=page===max-1;let root=$('binder');root.replaceChildren();for(let e of list.slice(page*9,page*9+9)){let cell=document.createElement('div');cell.className='slot'+(owned.has(e.id)?' owned':'');let art=document.createElement('div');art.className='art';let canvas=document.createElement('canvas');art.appendChild(canvas);cell.append(art);if(owned.has(e.id)){let mark=document.createElement('span');mark.className='tag';mark.textContent='✓ OWNED';cell.append(mark)}let number=document.createElement('div');number.className='number';number.textContent='#'+String(e.id).padStart(3,'0')+' · PDF P.'+e.pdfPage;cell.append(number);let set=document.createElement('div');set.className='source';set.textContent=e.set;cell.append(set);cell.onclick=()=>openCard(e);root.append(cell);cardImage(e,canvas)}if(!root.children.length)root.innerHTML='<div class="empty">沒有符合條件的卡片</div>'}
@@ -43,5 +43,54 @@ $('search').oninput=$('filter').onchange=()=>{page=0;render()};$('clear').onclic
 $('share').onclick=async()=>{const ids=[...owned].sort((a,b)=>a-b).map(x=>'#'+String(x).padStart(3,'0'));const message='DON!! ARCHIVE / '+ids.length+' collected of '+total+' PDF entries\\n'+ids.join(', ');try{await navigator.clipboard.writeText(message);alert('已複製 '+ids.length+' 張收藏編號，可以直接貼到 ChatGPT')}catch(e){prompt('請複製以下收藏編號',message)}};
 $('export').onclick=()=>{let blob=new Blob([JSON.stringify({version:1,owned:[...owned]},null,2)],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='don-binder-backup.json';a.click();URL.revokeObjectURL(u)};
 $('import').onclick=()=>$('file').click();$('file').onchange=async ev=>{try{let j=JSON.parse(await ev.target.files[0].text());if(!Array.isArray(j.owned))throw Error('Invalid');owned=new Set(j.owned.filter(x=>Number.isInteger(x)&&x>=1&&x<=total));persist();render()}catch(e){alert('無法讀取收藏備份')}};
-async function init(){try{pdf=await pdfjsLib.getDocument({url:'Card List.pdf'}).promise;render();$('status').prepend(document.createTextNode('✓ PDF 圖片已載入 · '))}catch(e){$('binder').innerHTML='<div class="empty warn">卡圖 PDF 尚未上傳或載入失敗。請在 GitHub Repository 根目錄加入「Card List.pdf」。</div>';console.error(e)}}init();
+// Verify each PDF slot against the real rendered content; do not assume every page has 9 cards.
+// The card's fixed legacy ID is intentionally retained, protecting existing browser-owned records.
+async function scanPDF(){
+  const valid=[];
+  const label='正在檢查官方 PDF 卡圖';
+  const docPages=pdf.numPages;
+  for(let p=1;p<=docPages;p++){
+    $('binder').innerHTML='<div class="empty">'+label+' '+p+' / '+docPages+'…</div>';
+    const pg=await pdf.getPage(p);
+    const vp=pg.getViewport({scale:0.6});
+    const c=document.createElement('canvas');c.width=Math.round(vp.width);c.height=Math.round(vp.height);
+    await pg.render({canvasContext:c.getContext('2d',{willReadFrequently:true}),viewport:vp}).promise;
+    const ctx=c.getContext('2d',{willReadFrequently:true});
+    for(let pos=1;pos<=9;pos++){
+      const col=(pos-1)%3,row=Math.floor((pos-1)/3);
+      // Original card locations in the official 3-column PDF layout, in PDF viewport units.
+      const bx=Math.round((59.33+170.63*col)*0.6),by=Math.round((152.25+226.73*row)*0.6);
+      const bw=Math.round(135.35*0.6),bh=Math.round(188.99*0.6);
+      if(bx+bw>c.width||by+bh>c.height)continue;
+      const pixels=ctx.getImageData(bx,by,bw,bh).data;
+      let dark=0, sampled=0;
+      for(let y=3;y<bh-3;y+=3)for(let x=3;x<bw-3;x+=3){
+        const i=(y*bw+x)*4,r=pixels[i],g=pixels[i+1],b=pixels[i+2];
+        sampled++;
+        if(r<105&&g<105&&b<110)dark++;
+      }
+      // Even pale card illustrations have a dark frame and bottom rule; blank parchment does not.
+      if(sampled&&dark/sampled>0.045){
+        const id=(p-1)*9+pos;
+        const group=p>=16&&p<=25?'PRB-02':p>=4&&p<=14?'PRB-01':p===3?'OP-03 / OP-08':p===15?'OP-10 / OP-12':p===26?'PRB-02 / OP-13':p===27?'EB-03':p===28?'OP-14 / EB-04':p===29?'OP-15 / 特別卡':p===30?'OP-15 / OP-16 / OP-17':p>=31?'後續發行 / 確認中':'活動 / DON!!';
+        valid.push({id,pdfPage:p,pos,set:group});
+      }
+    }
+    // Allow painting to keep the page responsive during indexing.
+    if(p%3===0)await new Promise(resolve=>requestAnimationFrame(resolve));
+  }
+  entries=valid;total=valid.length;$('totalEntries').textContent=total;
+  $('status').prepend(document.createTextNode('✓ 已檢查 '+docPages+' 頁，辨識 '+total+' 個含卡圖的格位；空白 PDF 背景已排除。'));
+  stats();
+}
+async function init(){
+  try{
+    pdf=await pdfjsLib.getDocument({url:'Card List.pdf'}).promise;
+    await scanPDF();
+    render();
+  }catch(e){
+    $('binder').innerHTML='<div class="empty warn">PDF 載入或卡圖辨識失敗，請重新整理網站。</div>';
+    console.error(e)
+  }
+}init();
 </script></body></html>
