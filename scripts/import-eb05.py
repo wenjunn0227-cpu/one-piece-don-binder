@@ -1,5 +1,5 @@
 import requests,bs4,json,re,os,urllib.parse
-URL="https://www.cardrush-op.jp/product-group/142/0/photo?img=160&num=100"
+URL="https://www.cardrush-op.jp/product-group/142/0/photo?img=500&num=100"
 headers={"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/123 Safari/537.36"}
 r=requests.get(URL,headers=headers,timeout=25);print("shop",r.status_code,len(r.content),flush=True);r.raise_for_status()
 soup=bs4.BeautifulSoup(r.text,"html.parser")
@@ -35,7 +35,7 @@ for key,_ in terms:
         from PIL import Image
         import io
         im=Image.open(io.BytesIO(resp.content)).convert("RGB")
-        im.thumbnail((500,730))
+        if im.width < 220 or im.height < 280:\n          print("SKIP tiny thumbnail",key,url,im.size,flush=True)\n          continue\n        im.thumbnail((500,730))
         path="cards/274.webp" if key=="seated" else "cards/275.webp"
         im.save(path,"WEBP",quality=84)
         print("SELECTED",key,url,im.size,flush=True)
