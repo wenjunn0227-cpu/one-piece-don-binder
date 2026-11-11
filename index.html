@@ -20,7 +20,7 @@
 <div class="pager"><button id="prev">← 上一頁</button><b id="pageText">PAGE 01 / 31</b><button id="next">下一頁 →</button></div>
 <div class="binder" id="binder"><div class="empty">正在載入圖鑑…</div></div>
 <div class="pager"><button id="prev2">← 上一頁</button><b id="pageText2">PAGE 01 / 31</b><button id="next2">下一頁 →</button></div>
-<div class="notice" id="status">圖片來源：官方《ドン!!カードリスト》PDF。2026-11-12 更新：新增 EB-05 / OP-18 發行追蹤與收藏清單分享。網站按 PDF 的每一筆印刷版本展示，不等同於獨立插畫總數；PRB-01 / PRB-02 等同插畫的普通、Parallel、金框可能分開排列。收藏記錄僅存於這台裝置的瀏覽器，請定期匯出備份。</div>
+<div class="notice" id="status">圖片來源：官方《ドン!!カードリスト》PDF。2026-11-12 修正：以卡牌底部黑色資訊欄辨識有效卡圖，排除 PDF 空白背景；並加入 EB-05 / OP-18 發行追蹤。網站按 PDF 的每一筆印刷版本展示，不等同於獨立插畫總數；PRB-01 / PRB-02 等同插畫的普通、Parallel、金框可能分開排列。收藏記錄僅存於這台裝置的瀏覽器，請定期匯出備份。</div>
 </main>
 <div id="modal" class="modal"><div class="dialog"><h2 id="modalTitle"></h2><p id="modalText"></p><div class="buttons"><button id="toggle" class="primary">標記已收藏</button><button id="close">關閉</button></div></div></div>
 <script type="module">
@@ -64,13 +64,15 @@ async function scanPDF(){
       if(bx+bw>c.width||by+bh>c.height)continue;
       const pixels=ctx.getImageData(bx,by,bw,bh).data;
       let dark=0, sampled=0;
-      for(let y=3;y<bh-3;y+=3)for(let x=3;x<bw-3;x+=3){
-        const i=(y*bw+x)*4,r=pixels[i],g=pixels[i+1],b=pixels[i+2];
-        sampled++;
-        if(r<105&&g<105&&b<110)dark++;
-      }
-      // Even pale card illustrations have a dark frame and bottom rule; blank parchment does not.
-      if(sampled&&dark/sampled>0.045){
+      // Check the actual DON!! footer strip (80–94% card height).
+      // Blank parchment may contain dark sketch lines, but does not have a solid dark card footer.
+      for(let y=Math.floor(bh*0.80);y<Math.floor(bh*0.94);y+=2)
+        for(let x=Math.floor(bw*0.12);x<Math.floor(bw*0.88);x+=2){
+          const i=(y*bw+x)*4,r=pixels[i],g=pixels[i+1],b=pixels[i+2];
+          sampled++;
+          if(r<105&&g<105&&b<110)dark++;
+        }
+      if(sampled&&dark/sampled>0.32){
         const id=(p-1)*9+pos;
         const group=p>=16&&p<=25?'PRB-02':p>=4&&p<=14?'PRB-01':p===3?'OP-03 / OP-08':p===15?'OP-10 / OP-12':p===26?'PRB-02 / OP-13':p===27?'EB-03':p===28?'OP-14 / EB-04':p===29?'OP-15 / 特別卡':p===30?'OP-15 / OP-16 / OP-17':p>=31?'後續發行 / 確認中':'活動 / DON!!';
         valid.push({id,pdfPage:p,pos,set:group});
